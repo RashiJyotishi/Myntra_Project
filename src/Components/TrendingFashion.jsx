@@ -49,7 +49,7 @@ const TrendingFashion = () => {
     <div className="relative flex items-center justify-center w-full my-8">
       <button
         onClick={handlePrev}
-        className="z-10 p-2 -ml-4 text-2xl text-white bg-blue-500 rounded-full shadow-lg hover:bg-blue-700"
+        className="z-10 px-4 py-[11px] -ml-4 text-2xl text-white bg-blue-500 rounded-full shadow-lg hover:bg-blue-700"
         // Adjusted transform
       >
         ←
@@ -58,7 +58,7 @@ const TrendingFashion = () => {
         {getCardsToShow().map((card) => (
           <div key={card.id} className="flex-shrink-0 w-1/3 p-4">
             <div className="overflow-hidden rounded-lg shadow-lg">
-              <img src={card.image} alt={`Card ${card.id}`} className="object-cover w-full h-48" />
+              <img src={card.image} alt={`Card ${card.id}`} className="object-cover w-full h-48 bg-white" />
               <div className="p-4 bg-white">
                 <p className="text-gray-700">Sentiment Score: {card.sentimentScore}</p>
                 <p className="text-gray-700">Engagement Score: {card.engagementScore}</p>
@@ -69,7 +69,7 @@ const TrendingFashion = () => {
       </div>
       <button
         onClick={handleNext}
-        className="z-10 p-2 -mr-4 text-2xl text-white bg-blue-500 rounded-full shadow-lg hover:bg-blue-700"
+        className="z-10 px-4 py-[11px] -mr-4 text-2xl text-white bg-blue-500 rounded-full shadow-lg hover:bg-blue-700"
          // Adjusted transform
       >
         →
