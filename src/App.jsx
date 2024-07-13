@@ -2,6 +2,7 @@ import './App.css'
 import Color_Freq from './Components/Color_Freq'
 import TrendingFashion from './Components/TrendingFashion'
 import WordCloud from './Components/WordCloud'
+import SentimentAnalysis from './Components/SentimentAnalysis'
 function App() {
 
   return (
@@ -13,6 +14,7 @@ function App() {
       <TrendingFashion/>
       <Color_Freq/>
       <WordCloud/>
+      <SentimentAnalysis/>
     </div>
     </div>
   )
