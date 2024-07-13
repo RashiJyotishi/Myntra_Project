@@ -3,7 +3,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 
 const Color_Freq = () => {
   return (
-    <div className='w-[40vw] ml-20 h-[40vh] bg-white rounded-2xl py-6 drop-shadow-sm'>
+    <div className='h-[50vh] w-[80vw] bg-white rounded-2xl py-6 drop-shadow-sm mx-10 my-5'>
       <h1 className='text-pink-600 text-xl font-bold px-10 mb-4'>Trending Colors (July 2024)</h1>
       <div className="flex justify-center">
         <PieChart

@@ -1,6 +1,7 @@
 import './App.css'
 import Color_Freq from './Components/Color_Freq'
 import TrendingFashion from './Components/TrendingFashion'
+import WordCloud from './Components/WordCloud'
 function App() {
 
   return (
@@ -11,6 +12,7 @@ function App() {
     <div>
       <TrendingFashion/>
       <Color_Freq/>
+      <WordCloud/>
     </div>
     </div>
   )
