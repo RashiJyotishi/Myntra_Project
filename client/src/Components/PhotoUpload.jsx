@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import PostList from './PostList';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import PostList from "./PostList";
 
 const PhotoUpload = () => {
   const [file, setFile] = useState(null);
-  const [hashtags, setHashtags] = useState('');
+  const [hashtags, setHashtags] = useState("");
   const [posts, setPosts] = useState([]);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   // Function to fetch posts from backend
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/posts');
+      const response = await axios.get("http://127.0.0.1:5000/posts");
       setPosts(response.data);
     } catch (error) {
-      console.error('Error fetching posts:', error);
+      console.error("Error fetching posts:", error);
     }
   };
 
@@ -38,25 +38,25 @@ const PhotoUpload = () => {
     e.preventDefault();
 
     if (!file || !hashtags) {
-      alert('Please select an image and enter hashtags.');
+      alert("Please select an image and enter hashtags.");
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('hashtags', hashtags);
+    formData.append("file", file);
+    formData.append("hashtags", hashtags);
 
     try {
-      await axios.post('http://127.0.0.1:5000/upload', formData, {
+      await axios.post("http://127.0.0.1:5000/upload", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
-      fetchPosts();  // Refresh the list of posts
+      fetchPosts(); // Refresh the list of posts
       setFile(null);
-      setHashtags('');
+      setHashtags("");
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error("Error uploading file:", error);
     }
   };
 
@@ -64,9 +64,9 @@ const PhotoUpload = () => {
   const handleLike = async (postId) => {
     try {
       await axios.post(`http://127.0.0.1:5000/like/${postId}`);
-      fetchPosts();  // Refresh the list of posts
+      fetchPosts(); // Refresh the list of posts
     } catch (error) {
-      console.error('Error liking post:', error);
+      console.error("Error liking post:", error);
     }
   };
 
@@ -74,9 +74,9 @@ const PhotoUpload = () => {
   const handleFollow = async (postId) => {
     try {
       await axios.post(`http://127.0.0.1:5000/follow/${postId}`);
-      fetchPosts();  // Refresh the list of posts
+      fetchPosts(); // Refresh the list of posts
     } catch (error) {
-      console.error('Error following post:', error);
+      console.error("Error following post:", error);
     }
   };
 
@@ -85,23 +85,22 @@ const PhotoUpload = () => {
     // console.log(postId);
     // console.log("post id submitted")
     if (!comment) {
-      alert('Please enter a comment.');
+      alert("Please enter a comment.");
       return;
     }
 
     try {
-      await axios.post('http://127.0.0.1:5000/comment', {
+      await axios.post("http://127.0.0.1:5000/comment", {
         post_id: postId,
         content: comment,
-        sentiment: 'neutral' // Placeholder sentiment value
+        sentiment: "neutral", // Placeholder sentiment value
       });
-      fetchPosts();  // Refresh the list of posts
-      setComment('');
+      fetchPosts(); // Refresh the list of posts
+      setComment("");
     } catch (error) {
-      console.error('Error adding comment:', error);
+      console.error("Error adding comment:", error);
     }
   };
-
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -132,7 +131,7 @@ const PhotoUpload = () => {
       </div>
 
       <PostList
-        posts={posts}  // Pass the posts state to PostList
+        posts={posts} // Pass the posts state to PostList
         handleLike={handleLike}
         handleCommentSubmit={handleCommentSubmit}
         handleFollow={handleFollow}
