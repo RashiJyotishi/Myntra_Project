@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import PostList from './PostList';  // Assuming this is the correct path to your PostList component
+import PostList from './PostList';
 
 const PhotoUpload = () => {
   const [file, setFile] = useState(null);
@@ -70,8 +70,20 @@ const PhotoUpload = () => {
     }
   };
 
+  // Handle following a post
+  const handleFollow = async (postId) => {
+    try {
+      await axios.post(`http://127.0.0.1:5000/follow/${postId}`);
+      fetchPosts();  // Refresh the list of posts
+    } catch (error) {
+      console.error('Error following post:', error);
+    }
+  };
+
   // Handle comment submission
-  const handleCommentSubmit = async (postId) => {
+  const handleCommentSubmit = async (postId, comment) => {
+    // console.log(postId);
+    // console.log("post id submitted")
     if (!comment) {
       alert('Please enter a comment.');
       return;
@@ -90,15 +102,6 @@ const PhotoUpload = () => {
     }
   };
 
-  // Handle following a post
-  const handleFollow = async (postId) => {
-    try {
-      await axios.post(`http://127.0.0.1:5000/follow/${postId}`);
-      fetchPosts();  // Refresh the list of posts
-    } catch (error) {
-      console.error('Error following post:', error);
-    }
-  };
 
   return (
     <div className="max-w-4xl mx-auto">

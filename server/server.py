@@ -25,7 +25,9 @@ class Post(db.Model):
     image_path = db.Column(db.String(255), nullable=False)
     hashtags = db.Column(db.String(255), nullable=True)
     likes = db.Column(db.Integer, default=0)
+    followers = db.Column(db.Integer, default=0)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -102,9 +104,10 @@ def get_posts():
         posts_data.append({
             "id": post.id,
             "image_path": post.image_path,
-            "image_url": f'/uploads/{os.path.basename(post.image_path)}',  # Add this line to include the image URL
+            "image_url": f'/uploads/{os.path.basename(post.image_path)}',
             "hashtags": post.hashtags,
             "likes": post.likes,
+            "followers": post.followers,  # Include followers count in response
             "comments": comments_data
         })
     return jsonify(posts_data), 200
@@ -125,6 +128,17 @@ def add_comment():
     db.session.add(new_comment)
     db.session.commit()
     return jsonify({"message": "Comment added successfully"}), 201
+
+
+@app.route('/follow/<int:post_id>', methods=['POST'])
+def follow_post(post_id):
+    post = Post.query.get(post_id)
+    if post:
+        post.followers += 1  # Increment the followers count
+        db.session.commit()
+        return jsonify({"message": "Post followed successfully", "followers": post.followers}), 200
+    return jsonify({"message": "Post not found"}), 404
+
 
 if __name__ == '__main__':
     with app.app_context():

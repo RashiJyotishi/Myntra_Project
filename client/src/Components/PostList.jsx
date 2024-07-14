@@ -1,12 +1,14 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const PostList = ({ posts = [], handleLike, handleCommentSubmit, handleFollow }) => {
-  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState({});
 
   // Handle comment input change
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
+  const handleCommentChange = (postId, value) => {
+    setComments(prevComments => ({
+      ...prevComments,
+      [postId]: value,
+    }));
   };
 
   return (
@@ -15,13 +17,14 @@ const PostList = ({ posts = [], handleLike, handleCommentSubmit, handleFollow })
         posts.map((post) => (
           <div key={post.id} className="p-4 mb-4 border rounded-md shadow-md">
             <img
-              src={`http://127.0.0.1:5000${post.image_url}`}  // Ensure this path is correct for displaying images
+              src={`http://127.0.0.1:5000${post.image_url}`} // Ensure this path is correct for displaying images
               alt="Post"
               className="rounded-lg"
-              style={{ maxWidth: '100%', maxHeight: '300px' }}  // Adjust image styling as per your UI needs
+              style={{ maxWidth: '100%', maxHeight: '300px' }} // Adjust image styling as per your UI needs
             />
             <p className="mt-2">{post.hashtags}</p>
             <p>Likes: {post.likes}</p>
+            <p>Followers: {post.followers}</p> {/* Display followers count */}
             <button
               onClick={() => handleLike(post.id)}
               className="px-4 py-2 mr-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700"
@@ -36,15 +39,17 @@ const PostList = ({ posts = [], handleLike, handleCommentSubmit, handleFollow })
             </button>
             <input
               type="text"
-              value={comment}
-              onChange={handleCommentChange}
+              value={comments[post.id] || ''}
+              onChange={(e) => handleCommentChange(post.id, e.target.value)}
               placeholder="Enter your comment"
               className="p-2 border border-gray-300 rounded-lg"
             />
             <button
-              onClick={() => handleCommentSubmit(post.id, comment)}
+              onClick={() => handleCommentSubmit(post.id, comments[post.id])}
+              
               className="px-4 py-2 font-bold text-white bg-gray-500 rounded-md hover:bg-gray-700"
             >
+            {console.log(comments[post.id])}
               Comment
             </button>
             <div className="mt-2">
@@ -59,7 +64,7 @@ const PostList = ({ posts = [], handleLike, handleCommentSubmit, handleFollow })
           </div>
         ))
       ) : (
-        <p> </p> // No posts available
+        <p> </p> //No posts available
       )}
     </div>
   );
