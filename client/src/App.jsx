@@ -7,10 +7,12 @@ import WordCloud from './Components/WordCloud';
 import SentimentAnalysis from './Components/SentimentAnalysis';
 import RealTimeSentimentAnalysis from './Components/RealTimeSentimentAnalysis';
 import Forecast from './Components/Forecast';
+import Navbar from './Components/Navbar';
 
 function App() {
   return (
     <Router>
+      <Navbar/>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/trending-fashion" component={TrendingFashion} />

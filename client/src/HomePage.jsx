@@ -1,70 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Hero from "../src/assets/Hero.png"
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-orange-50">
-      <nav className="p-4 bg-gray-800">
-        <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="relative flex items-center justify-between h-16">
-            <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-              <div className="hidden sm:block sm:ml-6">
-                <div className="flex space-x-4">
-                  <Link
-                    to="/"
-                    className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    to="/trending-fashion"
-                    className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                  >
-                    Trending Fashion
-                  </Link>
-                  <Link
-                    to="/realtime-sentiment-analysis"
-                    className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                  >
-                    Real-Time Sentiment Analysis
-                  </Link>
-                  <Link
-                    to="/color-freq"
-                    className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                  >
-                    Color Frequency
-                  </Link>
-                  <Link
-                    to="/word-cloud"
-                    className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                  >
-                    Word Cloud
-                  </Link>
-                  <Link
-                    to="/sentiment-analysis"
-                    className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                  >
-                    Sentiment Analysis
-                  </Link>
-                  <Link
-                    to="/forecast"
-                    className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                  >
-                    Forecast
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="h-[90vh] w-[100vw] py-36 px-24 bg-pink-50">
+      <div className='flex flex-row items-center justify-between'>
+        <div>
+          <img src={Hero} alt="" />
         </div>
-      </nav>
-
-      <main className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="sm:px-0">
-          <h1 className="mt-8 text-4xl font-bold text-center">Analysis site!</h1>
-          <p className="mt-4 text-lg text-center">Explore different sections using the navigation above.</p>
+        <div className='pl-10'>
+          <h1 className='text-7xl text-pink-600 font-semibold'>Welcome to the Myntra Trend Dashboard </h1>
+          <ul className='text-orange-600 text-lg mt-10'>
+            <li>1. Get Latest Instagram, Pinterest and other Social Media Fashion Trends, to know what Genz is wearing.</li>
+            <li>2. Know what your customer likes, our Sentiment Analysis works just perfect.</li>
+            <li>3. Latest Trending Colors? Why Not. Explore Famous #Hashtags to refine your Data.</li>
+            <li>4. Our Trend forecasting Graphs lets you know Trend timeline, Make sure to update ypur inventory accordingly.</li>
+          </ul>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
