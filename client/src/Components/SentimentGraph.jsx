@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import axios from 'axios';
+import 'tailwindcss/tailwind.css';
 
 Chart.register(...registerables);
 
@@ -11,14 +12,14 @@ const SentimentGraph = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/posts');
-        const posts = response.data;
-
-        const sentimentData = posts.reduce((acc, post) => {
-          post.comments.forEach(comment => {
-            if (!acc[post.hashtags]) acc[post.hashtags] = { positive: 0, negative: 0, neutral: 0 };
-            acc[post.hashtags][comment.sentiment]++;
-          });
+        const response = await axios.get('http://127.0.0.1:5000/sentiment');
+        const results = response.data;
+        
+        const sentimentData = results["Hashtag"].reduce((acc, hashtag, index) => {
+          if (!acc[hashtag]) acc[hashtag] = { positive: 0, negative: 0, neutral: 0 };
+          acc[hashtag].positive += results["Positive"][index];
+          acc[hashtag].negative += results["Negative"][index];
+          acc[hashtag].neutral += results["Neutral"][index];
           return acc;
         }, {});
 
@@ -53,12 +54,15 @@ const SentimentGraph = () => {
   };
 
   return (
-    <div>
-      {Object.keys(data).length > 0 ? (
-        <Bar data={chartData} />
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="container p-4 mx-auto">
+      <h1 className="mb-4 text-2xl font-bold text-center">Sentiment Analysis of Comments</h1>
+      <div className="p-6 bg-white rounded-lg shadow-md">
+        {Object.keys(data).length > 0 ? (
+          <Bar data={chartData} />
+        ) : (
+          <p className="text-center text-gray-500">Loading...</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import TrendingFashion from './Components/TrendingFashion';
 import WordCloud from './Components/WordCloud';
 import SentimentAnalysis from './Components/SentimentAnalysis';
 import RealTimeSentimentAnalysis from './Components/RealTimeSentimentAnalysis';
+import Forecast from './Components/Forecast';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/color-freq" component={Color_Freq} />
         <Route path="/word-cloud" component={WordCloud} />
         <Route path="/sentiment-analysis" component={SentimentAnalysis} />
+        <Route path="/forecast" component={Forecast} />
       </Switch>
     </Router>
   );
