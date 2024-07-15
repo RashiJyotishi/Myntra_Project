@@ -50,7 +50,7 @@ const SentimentAnalysis = () => {
   };
 
   return (
-    <div>
+    <div className='bg-pink-50 pt-10 h-[88vh]'>
       <FormControl fullWidth>
         <InputLabel>Quarters</InputLabel>
         <Select
