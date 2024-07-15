@@ -99,16 +99,19 @@ const TrendingFashion = () => {
   }
 
   return (
-    <div className="relative flex items-center justify-center w-full my-8">
+    <div className='bg-pink-50 w-full h-[88vh] flex flex-col items-center'>
+      <h1 className='text-4xl font-semibold text-pink-600 pt-20'>Trending Social Media Fashion</h1>
+      <h1 className='text-xl font-regular text-orange-600 mt-5 px-40 text-center'> <b className='mt-10'>Need: What is trending on Social Media, the major GenZ fashion choice Influencer?</b> <br /> <span className='font-regular'>Solution: Get the data of trending fashion posts by looking into famous hashtags. Know what famous fashion influencers are wearing. Get insights into whats engaging for GenZ and how are their sentiments towards a trend.</span> </h1>
+    <div className="relative flex items-center justify-center  py-8">
       <button
         onClick={handlePrev}
-        className="z-10 px-4 py-[11px] -ml-4 text-2xl text-white bg-blue-500 rounded-full shadow-lg hover:bg-blue-700"
+        className="z-10 px-4 py-[11px] -ml-4 text-2xl text-white bg-orange-500 rounded-full shadow-lg hover:bg-orange-700"
       >
         ←
       </button>
       <div className={`flex ${transition ? 'transition-transform duration-500 ease-in-out' : ''}`}>
         {getCardsToShow().map((card, index) => (
-          <div key={index} className="flex-shrink-0 w-1/3 p-4">
+          <div key={index} className="flex-shrink-0 w-[18vw] p-4">
             <div className="overflow-hidden rounded-lg shadow-lg">
               <img src={getImageSource(card.image)} alt={`Card ${card.index}`} className="object-cover w-full h-48 bg-white" />
               <div className="p-4 bg-white">
@@ -140,6 +143,7 @@ const TrendingFashion = () => {
       >
         →
       </button>
+    </div>
     </div>
   );
 };
