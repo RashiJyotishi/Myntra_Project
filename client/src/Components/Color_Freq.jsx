@@ -3,8 +3,12 @@ import { PieChart } from '@mui/x-charts/PieChart';
 
 const Color_Freq = () => {
   return (
-    <div className='h-[50vh] w-[80vw] bg-white rounded-2xl py-6 drop-shadow-sm mx-10 my-5'>
-      <h1 className='text-pink-600 text-xl font-bold px-10 mb-4'>Trending Colors (July 2024)</h1>
+    <div className='w-[100vw] h-[88vh] bg-pink-50 flex flex-col items-center justify-center'>
+
+    <div className='h-[70vh] w-[80vw] bg-white rounded-2xl py-6 drop-shadow-sm mx-10'>
+      <h1 className='text-pink-600 text-4xl font-semibold px-10 mb-4'>Trending Colors (July 2024)</h1>
+      {/* <h1 className='text-5xl font-semibold text-pink-600 mb-10'>Word Cloud</h1> */}
+      <h1 className='text-xl font-regular text-orange-600 mb-10 px-10'> <b className='mb-10'>Need: What colors do GenZ prefer?</b> <br /> <span className='font-regular'>Solution: Get the overall Color Analysis. For this, we took out trending fashion clothing from instagram and did color analysis on each post, then we combined them into a pie chart and displayed using React.js Material UI.</span> </h1>
       <div className="flex justify-center">
         <PieChart
           series={[
@@ -37,6 +41,7 @@ const Color_Freq = () => {
           height={250}
         />
       </div>
+    </div>
     </div>
   );
 }
